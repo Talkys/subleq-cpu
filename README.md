@@ -1,1 +1,1 @@
-subleq-spu
+subleq-cpu
