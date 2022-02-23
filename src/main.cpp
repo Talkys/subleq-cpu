@@ -13,9 +13,9 @@ if (mem[b]<= 0) goto c
 int main(int argc, char* argv[])
 {
     std::string filename;
-    std::vector<int> prog;
+    std::vector<word> prog;
     std::ifstream in;
-    int current;
+    word current;
     cpu* TVC;
     switch (argc)
     {    
@@ -24,7 +24,7 @@ int main(int argc, char* argv[])
         in.open(filename);
         while (in.good())
         {
-            in >> current;
+            in.read((char*)(&current), sizeof(current));
             prog.push_back(current);
         }
         TVC = new cpu(prog);

@@ -1,18 +1,20 @@
 #include <vector>
 #include <iostream>
 
+#define word int32_t
+
 class cpu
 {
     private:
-    std::vector<int> mem;
+    std::vector<word> mem;
 
     public:
-    cpu(std::vector<int> prog);
+    cpu(std::vector<word> prog);
     void run();
     void showmem();
 };
 
-cpu::cpu(std::vector<int> prog)
+cpu::cpu(std::vector<word> prog)
 {
     for(int i = 0; i < prog.size(); i++)
         this->mem.push_back(prog[i]);
@@ -20,7 +22,7 @@ cpu::cpu(std::vector<int> prog)
 
 void cpu::run()
 {
-    int pc = 0, next, a, b, c;
+    word pc = 0, next, a, b, c;
     char z;
     do{
         next = pc + 3;
@@ -31,7 +33,7 @@ void cpu::run()
             mem[b] = z;
         }
         else if(b == -1)
-            std::cout << mem[a];
+            std::cout << (char) mem[a];
         else
         {
             mem[b] -= mem[a];
@@ -39,4 +41,13 @@ void cpu::run()
         }
         pc = next;
     }while(pc >= 0);
+}
+
+void cpu::showmem()
+{
+    for(int i = 0; i < this->mem.size(); i++)
+    {
+        std::cout<<this->mem[i]<<" ";
+    }
+    std::cout<<std::endl;
 }

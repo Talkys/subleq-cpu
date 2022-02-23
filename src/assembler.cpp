@@ -2,9 +2,11 @@
 #include <fstream>
 using namespace std;
 
+#define word int32_t
+
 int main()
 {
-    int prog[] = {
+    word prog[] = {
         15,  17,   -1,
         17,  -1,   -1,
         16,   1,   -1,
@@ -22,5 +24,5 @@ int main()
 
     ofstream f {"program.bin"};
     for(size_t i = 0; i < size; i++)
-        f << prog[i];
+        f.write((char*)(&prog[i]), sizeof(prog[i]));
 }
